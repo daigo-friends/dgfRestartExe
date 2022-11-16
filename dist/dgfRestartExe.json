@@ -1,0 +1,43 @@
+{
+    "log_conf": {
+        "version": 1,
+        "disable_existing_loggers": false,
+        "formatters": {
+            "simple": {
+                "format": "%(asctime)s %(name)s:%(lineno)s %(funcName)s [%(levelname)s]: %(message)s"
+            }
+        },
+
+        "handlers": {
+            "consoleHandler": {
+                "class": "logging.StreamHandler",
+                "level": "DEBUG",
+                "formatter": "simple",
+                "stream": "ext://sys.stdout"
+            },
+            "rotatingFileHandler": {
+                "class":"logging.handlers.RotatingFileHandler",
+                "level":"DEBUG",
+                "maxBytes":1048576,
+                "backupCount":3,
+                "formatter": "simple",
+                "filename":"dgfRestartExe.log",
+                "encoding":"utf-8",
+                "mode":"a"
+            }
+        },
+
+        "loggers": {
+            "main": {
+                "level": "INFO",
+                "handlers": ["consoleHandler", "rotatingFileHandler"],
+                "propagate": false
+            }
+        },
+
+        "root": {
+            "level": "INFO"
+        }
+    },
+    "timeout": "5"
+}
